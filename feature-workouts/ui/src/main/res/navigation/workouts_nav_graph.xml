@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/workouts_nav_graph"
+    app:startDestination="@id/workoutsFragment">
+
+    <fragment
+        android:id="@+id/workoutsFragment"
+        android:name="ru.kolsa.feature.workouts.ui.WorkoutsFragment"
+        android:label="WorkoutsFragment" />
+</navigation>

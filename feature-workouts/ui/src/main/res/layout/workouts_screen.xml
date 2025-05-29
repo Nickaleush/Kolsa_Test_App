@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <lee.module.lottieswiperefreshlayout.LottieSwipeRefreshLayout
+        android:id="@+id/swipeToRefreshView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:lottie_srl_alpha_enabled="true"
+        app:lottie_srl_indicator_overlay="true"
+        app:lottie_srl_rawRes="@raw/load_anim"
+        app:lottie_srl_scale_enabled="true"
+        app:lottie_srl_size="35dp">
+
+        <me.saket.inboxrecyclerview.InboxRecyclerView
+            android:id="@+id/workoutsRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+    </lee.module.lottieswiperefreshlayout.LottieSwipeRefreshLayout>
+
+    <me.saket.inboxrecyclerview.page.ExpandablePageLayout
+        android:id="@+id/expandableWorkout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background">
+
+        <ru.kolsa.feature.workouts.ui.view.expandedworkout.ExpandedWorkoutView
+            android:id="@+id/expandedWorkoutView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </me.saket.inboxrecyclerview.page.ExpandablePageLayout>
+</FrameLayout>

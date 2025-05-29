@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="green">#84fd37</color>
+    <color name="red">#CC2424</color>
+    <color name="lightBlue">#E8EDF6</color>
+    <color name="purple">#6e1ee5</color>
+    <color name="lightSecondaryColor">#E8EDF6</color>
+    <color name="background">#FAFAFF</color>
+    <color name="transparent">#000000</color>
+    <color name="brown">#766e6c</color>
+    <color name="black">#141313</color>
+    <color name="black85Transparency">#D9000000</color>
+    <color name="gray600">#6C727B</color>
+    <color name="gray500">#6E7782</color>
+    <color name="gray400">#9AA0A8</color>
+    <color name="gray300">#C5C9CD</color>
+    <color name="gray200">#E5E9ED</color>
+    <color name="gray100">#F4F4F5</color>
+    <color name="gray50">#DFDFDF</color>
+    <color name="skeletonMask">#E5E9ED</color>
+    <color name="skeletonShimmer">#FFFFFF</color>
+    <color name="lightGray">#C4C4C4</color>
+    <color name="blueGray">#E5E9ED</color>
+    <color name="white">#FFFFFF</color>
+    <color name="text">#141313</color>
+    <color name="blue">#357AFF</color>
+    <color name="darkBlue">#00193E</color>
+    <color name="redCost">#CC2424</color>
+    <color name="editTextBackground">#D2D2D5</color>
+</resources>

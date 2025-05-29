@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    tools:parentTag="android.widget.FrameLayout">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ru.kolsa.feature.workouts.ui.view.video.KolsaVideoView
+            android:id="@+id/videoView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="0dp" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/unbounded_medium"
+            android:gravity="start"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            tools:text="Подтянутый верх тела" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/unbounded_light"
+            android:gravity="start"
+            android:textColor="@color/gray600"
+            android:textSize="13sp"
+            tools:text="Силовая тренировка для проработки мышц кора. Каждое упражнение в нескольких вариантах - выбирайте подходящий и погнали!" />
+
+        <TextView
+            android:id="@+id/duration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="10dp"
+            android:fontFamily="@font/unbounded_light"
+            android:gravity="start"
+            android:textColor="@color/gray600"
+            android:textSize="12sp"
+            tools:text="Длительность: 25 мин." />
+
+        <ImageView
+            android:id="@+id/kolsaLogo"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/kolsa_bottom_logo" />
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/toolbar_bg"
+        android:gravity="center_horizontal"
+        app:navigationIcon="@drawable/arrow_back_white"/>
+</merge>
