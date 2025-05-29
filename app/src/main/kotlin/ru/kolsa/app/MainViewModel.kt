@@ -21,7 +21,6 @@ class MainViewModel(
     fun intent(intent: Intent) {
         when (intent) {
             Intent.SplashScreenEnded -> {
-                Log.d("242424", "ENDEEED")
                 viewModelScope.launch {
                     stateFlow.value = State.Main
                 }

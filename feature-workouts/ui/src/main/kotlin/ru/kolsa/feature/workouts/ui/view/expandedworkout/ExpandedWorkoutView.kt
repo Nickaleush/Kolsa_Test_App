@@ -42,7 +42,6 @@ class ExpandedWorkoutView : FrameLayout {
         binding.title.text = item.title
         binding.description.text = item.description
         binding.duration.text = item.duration.toDurationInMin()
-        Log.d("ExpandedWorkoutView", "video url is ${item.videoUrl}")
         binding.videoView.configure(
             item.videoUrl
         )

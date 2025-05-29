@@ -47,8 +47,6 @@ class WorkoutsViewModel(
         it[FIELD_ID_SEARCH] = ""
     }
 
-    private var forceUpdateFlag = false
-
     init {
         observeWorkouts()
         loadWorkouts()
@@ -100,23 +98,26 @@ class WorkoutsViewModel(
                     isEnabled = true
                 )
             ),
+            WorkoutsContract.Block.Filter(
+                types = listOf(1,2,3),
+                selectedType = selectedType
+            ),
             WorkoutsContract.Block.Workouts(
                 workouts.map { WorkoutViewItem(it) }
             )
         )
-
-        return if (selectedWorkout != null && !videoUrl.isNullOrBlank()) {
+        val workout = selectedWorkout
+        return if (workout != null && !videoUrl.isNullOrBlank()) {
             State.Loaded.Expanded(
                 blocks = blocks,
                 expandedWorkout = ExpandedWorkoutViewItem(
-                    selectedWorkout!!,
+                    workout,
                     videoUrl
                 )
             )
         } else {
             State.Loaded.Collapsed(
-                blocks = blocks,
-                distinctSwitch = forceUpdateFlag
+                blocks = blocks
             )
         }
     }
@@ -143,11 +144,6 @@ class WorkoutsViewModel(
 
     private fun refreshData() {
         cachedWorkoutsFlow.value = null
-        loadWorkouts()
-    }
-
-    private fun forceUpdateUI() {
-        forceUpdateFlag = !forceUpdateFlag
         loadWorkouts()
     }
 

@@ -38,8 +38,7 @@ object WorkoutsContract {
             abstract val blocks: List<Block>
 
             data class Collapsed(
-                override val blocks: List<Block>,
-                private val distinctSwitch: Boolean
+                override val blocks: List<Block>
             ) : Loaded()
 
             data class Expanded(

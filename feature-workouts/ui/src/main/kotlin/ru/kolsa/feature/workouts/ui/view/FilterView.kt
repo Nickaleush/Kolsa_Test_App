@@ -36,9 +36,7 @@ internal class FilterView : ChipGroup {
                     context,
                     R.drawable.chip_bg
                 )
-                typeface =
-                    ResourcesCompat.getFont(context, ru.kolsa.core.ui.R.font.unbounded_medium)
-                textSize = 12F
+                setTextAppearance(R.style.chipTextAppearance)
                 isCheckable = true
                 isChecked = type == selectedType
                 setOnClickListener {

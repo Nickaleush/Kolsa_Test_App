@@ -13,6 +13,5 @@ internal fun WorkoutsContract.State.Loaded.toRecyclerViewItems(): List<Any> {
             is WorkoutsContract.Block.Search -> itemsList.add(MainItem.SearchItem(it.item))
         }
     }
-    Log.d("fwwsv", "$itemsList")
     return itemsList
 }
