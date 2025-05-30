@@ -53,11 +53,7 @@ Kotlin
 Экран "О нас" - открывается при нажатии на логотип "Kolsa" на главном экране
 ![image](https://github.com/user-attachments/assets/a98aca71-e0ab-4e80-8c31-b67f87066769)
 
-![image](https://github.com/user-attachments/assets/c1d7a00a-f9b4-40b3-89c5-b4c5e5230cd5)
+![image](https://github.com/user-attachments/assets/7ef4826a-f85c-406e-b489-d86748f11488)
 
-
-🧑‍💻 Автор - Ушаков Никита
-Разработано с ❤️ 
-Связь: Telegram: @Nickaleush
 
  
