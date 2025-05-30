@@ -42,6 +42,8 @@ Kolsa Workouts — это стильное, отзывчивое и удобно
 Kotlin
 
 - MVI (Model-View-Intent) архитектура
+
+- Modularization - приложение многомодульное, поддерживает масштабируемость
   
 - Kotlin Coroutines
 
@@ -54,6 +56,7 @@ Kotlin
 - Navigation Component 
 
 - ViewBinding
+
 
 Скриншоты:
 
