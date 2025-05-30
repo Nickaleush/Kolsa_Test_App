@@ -46,4 +46,8 @@ dependencies {
     implementation(project(":core-ui"))
     implementation(project(":app"))
     implementation(project(":feature-workouts:ui"))
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.junit)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 }

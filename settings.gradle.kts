@@ -28,6 +28,8 @@ include(":core-domain")
 include(":core-data")
 include(":core-di")
 include(":feature-workouts")
+include(":feature-about")
+include(":feature-about:ui")
 include(":feature-workouts:businesslogic")
 include(":feature-workouts:ui")
  

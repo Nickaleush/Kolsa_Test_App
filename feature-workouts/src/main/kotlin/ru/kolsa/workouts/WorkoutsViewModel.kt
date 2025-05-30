@@ -30,11 +30,11 @@ class WorkoutsViewModel(
     }
 
     private val cachedWorkoutsFlow = MutableStateFlow<List<Workout>?>(null)
-
     private val stateFlow = MutableStateFlow<State>(State.Loading)
     val state = stateFlow.asStateFlow()
 
     private var selectedType: Int? = null
+    private var availableTypes: List<Int> = emptyList()
 
     private val sideEffectsChannel = Channel<Event>(Channel.BUFFERED)
     val sideEffects: Flow<Event> = sideEffectsChannel.receiveAsFlow()
@@ -72,13 +72,15 @@ class WorkoutsViewModel(
 
         val searchQuery = textFieldsContents[FIELD_ID_SEARCH].orEmpty().trim().lowercase()
 
-        val filteredWorkouts = if (searchQuery.isBlank()) {
+        val filteredBySearch = if (searchQuery.isBlank()) {
             workouts
         } else {
-            workouts.filter { workout ->
-                workout.title.lowercase().contains(searchQuery)
-            }
+            workouts.filter { it.title.lowercase().contains(searchQuery) }
         }
+
+        val filteredWorkouts = selectedType?.let { type ->
+            filteredBySearch.filter { it.type == type }
+        } ?: filteredBySearch
 
         stateFlow.value = buildLoadedState(filteredWorkouts, videoUrl)
     }
@@ -99,7 +101,7 @@ class WorkoutsViewModel(
                 )
             ),
             WorkoutsContract.Block.Filter(
-                types = listOf(1,2,3),
+                types = availableTypes,
                 selectedType = selectedType
             ),
             WorkoutsContract.Block.Workouts(
@@ -133,9 +135,9 @@ class WorkoutsViewModel(
                     stateFlow.value = State.Error("Ошибка загрузки данных")
                     sideEffectsChannel.send(Event.ShowSnackBar("Пожалуйста, попробуйте позже"))
                 }
-
                 else -> {
                     val workouts = result.getOrThrow()
+                    availableTypes = workouts.map { it.type }.distinct().sorted()
                     cachedWorkoutsFlow.value = workouts
                 }
             }
@@ -171,7 +173,8 @@ class WorkoutsViewModel(
             }
 
             is Intent.FilterToggled -> {
-
+                selectedType = if (selectedType == intent.type) null else intent.type
+                updateState()
             }
 
             is Intent.ExpandWorkout -> {
@@ -193,6 +196,13 @@ class WorkoutsViewModel(
                     }
                 }
             }
+
+            is Intent.KolsaLogoClick -> {
+                viewModelScope.launch {
+                    sideEffectsChannel.send(Event.OpenAboutKolsaScreen)
+                }
+            }
         }
     }
 }
+

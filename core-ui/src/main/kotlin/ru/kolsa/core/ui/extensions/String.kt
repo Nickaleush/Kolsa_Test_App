@@ -9,6 +9,6 @@ fun String.toUniqueLong(): Long {
 fun String.toDurationInMin(): String {
     return when(this) {
         "workout" -> "Силовая тренировка"
-        else -> "Длительность $this мин."
+        else -> "Длительность: $this мин."
     }
 }

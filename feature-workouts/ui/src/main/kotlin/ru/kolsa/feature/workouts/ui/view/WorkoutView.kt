@@ -7,7 +7,6 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.airbnb.lottie.LottieDrawable
 import ru.kolsa.core.ui.extensions.dpToPx
 import ru.kolsa.core.ui.extensions.layoutInflater
-import ru.kolsa.core.ui.extensions.toDurationInMin
 import ru.kolsa.feature.workouts.ui.R
 import ru.kolsa.feature.workouts.ui.databinding.WorkoutItemBinding
 import ru.kolsa.workouts.entities.WorkoutViewItem
@@ -23,7 +22,7 @@ class WorkoutView : FrameLayout {
 
     private val binding by viewBinding(WorkoutItemBinding::bind)
 
-    var onPropertyClick: ((ItemClickResult) -> Unit)? = null
+    var onWorkoutClick: ((ItemClickResult) -> Unit)? = null
 
     init {
         WorkoutItemBinding.inflate(layoutInflater, this)
@@ -41,7 +40,7 @@ class WorkoutView : FrameLayout {
                 else -> R.drawable.workout_type_3
             }
         )
-        binding.duration.text = item.duration.toDurationInMin()
+        binding.duration.text = item.duration
         binding.durationAnim.progress = 0F
         binding.durationAnim.playAnimation()
         binding.durationAnim.repeatMode = LottieDrawable.REVERSE
@@ -59,7 +58,7 @@ class WorkoutView : FrameLayout {
         layoutParams.marginEnd = animMarginEnd.dpToPx()
         binding.durationAnim.layoutParams = layoutParams
         root.setOnClickListener {
-            onPropertyClick?.invoke(ItemClickResult(item))
+            onWorkoutClick?.invoke(ItemClickResult(item))
         }
     }
 }

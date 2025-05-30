@@ -1,6 +1,6 @@
-package ru.kolsa.feature.workouts.ui.view.video
+package ru.kolsa.feature.workouts.ui.view.videoWithoutFullscreen
 
-internal class KolsaVideoViewMutableState : KolsaVideoViewState {
+internal class WorkoutVideoViewMutableState : WorkoutVideoViewState {
 
     var isPlaying: Boolean = false
     var isFirstPlay: Boolean = true

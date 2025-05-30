@@ -2,7 +2,6 @@ package ru.kolsa.feature.workouts.ui.view.expandedworkout
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.widget.FrameLayout
 import ru.kolsa.core.ui.extensions.layoutInflater
 import ru.kolsa.core.ui.extensions.toDurationInMin
@@ -26,8 +25,8 @@ class ExpandedWorkoutView : FrameLayout {
 
     init {
         binding.toolbar.setNavigationOnClickListener {
-            val property = this.workoutItem ?: return@setNavigationOnClickListener
-            actionClickListener?.invoke(ExpandedWorkoutViewClickAction.Toolbar(property))
+            val workout = this.workoutItem ?: return@setNavigationOnClickListener
+            actionClickListener?.invoke(ExpandedWorkoutViewClickAction.Toolbar(workout))
         }
     }
 

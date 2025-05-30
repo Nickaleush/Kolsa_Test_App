@@ -1,10 +1,12 @@
 package ru.kolsa.feature.workouts.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.addCallback
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import me.saket.inboxrecyclerview.page.PageCollapseEligibilityHapticFeedback
 import me.saket.inboxrecyclerview.page.SimplePageStateChangeCallbacks
@@ -49,6 +51,9 @@ class WorkoutsFragment : Fragment(R.layout.workouts_screen) {
         )
         if (binding.workoutsRecycler.adapter == null) {
             binding.workoutsRecycler.adapter = WorkoutsAdapter(
+                onKolsaLogoClick = {
+                    viewModel.intent(WorkoutsContract.Intent.KolsaLogoClick)
+                },
                 onSelectWorkoutClick = { p ->
                     viewModel.intent(WorkoutsContract.Intent.ExpandWorkout(p.item.id))
                 },
@@ -100,7 +105,6 @@ class WorkoutsFragment : Fragment(R.layout.workouts_screen) {
 
     private fun observeState() {
         collectFlowWithLifecycle(viewModel.state) {
-
             when (it) {
                 is WorkoutsContract.State.Error -> {
 
@@ -162,8 +166,12 @@ class WorkoutsFragment : Fragment(R.layout.workouts_screen) {
                     )
                 }
 
-                WorkoutsContract.Event.ReleasePlayer -> {
+                is WorkoutsContract.Event.ReleasePlayer -> {
                     binding.expandedWorkoutView.releasePlayer()
+                }
+
+                is WorkoutsContract.Event.OpenAboutKolsaScreen -> {
+                    findNavController().navigate(R.id.action_workoutsFragment_to_about_nav_graph)
                 }
             }
         }

@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "ru.kolsa.feature.workouts.ui"
+    namespace = "ru.kolsa.feature.about.ui"
     compileSdk = 34
 
     defaultConfig {
@@ -22,6 +22,5 @@ android {
 
 dependencies {
     implementation(project(":core-ui"))
-    implementation(project(":feature-workouts"))
-    implementation(project(":feature-about:ui"))
+    implementation(project(":feature-about"))
 }

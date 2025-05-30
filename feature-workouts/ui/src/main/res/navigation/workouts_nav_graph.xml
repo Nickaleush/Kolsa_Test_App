@@ -7,5 +7,14 @@
     <fragment
         android:id="@+id/workoutsFragment"
         android:name="ru.kolsa.feature.workouts.ui.WorkoutsFragment"
-        android:label="WorkoutsFragment" />
+        android:label="WorkoutsFragment">
+        <action
+            android:id="@+id/action_workoutsFragment_to_about_nav_graph"
+            app:destination="@id/about_nav_graph"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+    </fragment>
+    <include app:graph="@navigation/about_nav_graph" />
 </navigation>

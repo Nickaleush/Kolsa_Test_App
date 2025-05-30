@@ -1,18 +1,19 @@
 package ru.kolsa.feature.workouts.ui.recyclerView
 
+import android.util.Log
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.RecyclerView
-import ru.kolsa.feature.workouts.ui.view.FilterView
 import ru.kolsa.feature.workouts.ui.view.WorkoutView
 import ru.kolsa.workouts.entities.WorkoutViewItem
 
 internal class WorkoutsAdapter(
+    private val onKolsaLogoClick: (() -> Unit),
     private val onSelectWorkoutClick: (WorkoutView.ItemClickResult) -> Unit,
     private val onTextChanged: (id: String, newValue: String) -> Unit,
     private val onTypeSelected: (Int?) -> Unit
-) : RecyclerView.Adapter<MainViewHolder>() {
+) : RecyclerView.Adapter<WorkoutsViewHolder>() {
 
     private val differ = AsyncListDiffer(this, WorkoutsDiffUtilCallback)
     private val displayedItems = mutableSetOf<Int>()
@@ -21,7 +22,7 @@ internal class WorkoutsAdapter(
         setHasStableIds(true)
     }
 
-    override fun onViewAttachedToWindow(holder: MainViewHolder) {
+    override fun onViewAttachedToWindow(holder: WorkoutsViewHolder) {
         super.onViewAttachedToWindow(holder)
         val animation = AnimationUtils.loadAnimation(
             holder.itemView.context,
@@ -35,32 +36,37 @@ internal class WorkoutsAdapter(
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorkoutsViewHolder {
         return parent.createMainViewHolder(
             viewType
         )
     }
 
-    override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: WorkoutsViewHolder, position: Int) {
         val items = differ.currentList
         when (val item = items[position]) {
 
-            is MainItem.SkeletonTopBlock -> (holder as? MainViewHolder.SkeletonTopBlockViewHolder)?.bind()
+            is MainItem.SkeletonTopBlock -> {
+                (holder as? WorkoutsViewHolder.SkeletonTopBlockViewHolder)?.bind()
+            }
 
             is MainItem.SkeletonItem -> {
-                (holder as? MainViewHolder.SkeletonWorkoutViewHolder)?.bind()
+                (holder as? WorkoutsViewHolder.SkeletonWorkoutViewHolder)?.bind()
             }
 
             is MainItem.SearchItem -> {
-                (holder as? MainViewHolder.SearchViewHolder)?.bind(item.textFieldContent, onTextChanged)
+                (holder as? WorkoutsViewHolder.SearchViewHolder)?.bind(
+                    item.textFieldContent,
+                    onTextChanged
+                )
             }
 
             is MainItem.TopBlock -> {
-                (holder as? MainViewHolder.TopBlockViewHolder)?.bind(item.title)
+                (holder as? WorkoutsViewHolder.TopBlockViewHolder)?.bind(item.title, onKolsaLogoClick)
             }
 
             is MainItem.FiltersItem -> {
-                (holder as? MainViewHolder.FilterViewHolder)?.bind(
+                (holder as? WorkoutsViewHolder.FilterViewHolder)?.bind(
                     item.types,
                     item.selectedType
                 ) { selectedType ->
@@ -69,42 +75,8 @@ internal class WorkoutsAdapter(
             }
 
             is WorkoutViewItem -> {
-                (holder as? MainViewHolder.WorkoutViewHolder)?.bind(item, onSelectWorkoutClick)
+                (holder as? WorkoutsViewHolder.WorkoutViewHolder)?.bind(item, onSelectWorkoutClick)
             }
-        }
-    }
-
-    override fun onBindViewHolder(
-        holder: MainViewHolder,
-        position: Int,
-        payloads: MutableList<Any>,
-    ) {
-        val payload = payloads.getOrNull(0) as? List<*>
-        if (payload.isNullOrEmpty()) {
-            super.onBindViewHolder(holder, position, payloads)
-            return
-        }
-        payload.forEach {
-//            when (it) {
-//                MainDiffUtilCallback.CHANGED_TOP_BLOCK -> {
-//                    val config = differ.currentList[position] as? MainTopBlockConfig ?: return@forEach
-//                    (holder as? MainViewHolder.MainTopBlockViewHolder)?.block?.configure(config)
-//                }
-//
-//                MainDiffUtilCallback.CHANGED_CHIPS -> {
-//                    val config = differ.currentList[position] as? MainItem.Chips
-//                        ?: return@forEach
-//                    (holder as? MainViewHolder.EmergencyAnnouncementViewHolder)?.view?.configure(
-//                        config.item
-//                    )
-//                }
-//
-//                MainDiffUtilCallback.CHANGED_COMMON_ANNOUNCEMENTS -> {
-//                    val config = differ.currentList[position] as? MainItem.Announcements
-//                        ?: return@forEach
-//                    (holder as? MainViewHolder.AnnouncementsViewHolder)?.view?.setup(config.item)
-//                }
-//            }
         }
     }
 

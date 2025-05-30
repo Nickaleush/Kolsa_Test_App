@@ -10,10 +10,10 @@ import ru.kolsa.core.ui.extensions.dp
 
 fun Fragment.setupExpandableWorkout(
     rv: InboxRecyclerView,
-    propertyPage: ExpandablePageLayout,
+    workoutPage: ExpandablePageLayout,
     collapseThreshold: Int
 ) {
-    rv.expandablePage = propertyPage
+    rv.expandablePage = workoutPage
     rv.dimPainter = DimPainter.listAndPage(
         listColor = resources.getColor(R.color.purple, null),
         listAlpha = 0.2F,
@@ -21,6 +21,6 @@ fun Fragment.setupExpandableWorkout(
         pageAlpha = 0.5F
     )
     rv.itemExpandAnimator = ItemExpandAnimator.scale()
-    propertyPage.pullToCollapseThresholdDistance = collapseThreshold.dp
-    propertyPage.animationDurationMillis = 500L
+    workoutPage.pullToCollapseThresholdDistance = collapseThreshold.dp
+    workoutPage.animationDurationMillis = 500L
 }

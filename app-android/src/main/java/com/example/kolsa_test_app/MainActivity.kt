@@ -3,6 +3,7 @@ package com.example.kolsa_test_app
 import android.content.pm.ActivityInfo
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity

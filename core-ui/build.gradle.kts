@@ -36,8 +36,6 @@ dependencies {
     api (libs.faltenreich.skeletonlayout)
     api(libs.android.thirdpartyui.advancedcardview)
     api(libs.android.thirdpartyui.inboxrecyclerview)
-
-    androidTestImplementation(libs.androidx.junit)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    api(libs.androidx.media.exoplayer)
+    api(libs.androidx.media.ui)
 }

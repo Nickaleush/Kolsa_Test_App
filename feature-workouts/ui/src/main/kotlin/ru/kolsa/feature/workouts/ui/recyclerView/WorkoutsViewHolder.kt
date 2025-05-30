@@ -10,11 +10,11 @@ import ru.kolsa.feature.workouts.ui.view.TopBlockView
 import ru.kolsa.feature.workouts.ui.view.WorkoutView
 import ru.kolsa.workouts.entities.WorkoutViewItem
 
-internal sealed class MainViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+internal sealed class WorkoutsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     class SkeletonTopBlockViewHolder(
         val view: SkeletonLayout,
-    ) : MainViewHolder(view) {
+    ) : WorkoutsViewHolder(view) {
         fun bind() {
             view.showSkeleton()
         }
@@ -22,7 +22,7 @@ internal sealed class MainViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
     class SkeletonWorkoutViewHolder(
         val view: SkeletonLayout
-    ) : MainViewHolder(view) {
+    ) : WorkoutsViewHolder(view) {
         fun bind() {
             view.showSkeleton()
         }
@@ -30,51 +30,43 @@ internal sealed class MainViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
     class SearchViewHolder(
         val view: SearchView
-    ) : MainViewHolder(view) {
+    ) : WorkoutsViewHolder(view) {
         fun bind(item: TextFieldViewItem, onTextChanged: (id: String, newValue: String) -> Unit) {
-           view.setUpSearch(item, onTextChanged)
+            view.setUpSearch(item, onTextChanged)
         }
     }
 
     class FilterViewHolder(
         val view: FilterView
-    ) : MainViewHolder(view) {
+    ) : WorkoutsViewHolder(view) {
         fun bind(types: List<Int>, selectedType: Int?, onTypeSelected: (Int?) -> Unit) {
             view.setChipItems(types, selectedType, onTypeSelected)
         }
     }
 
     class TopBlockViewHolder(
-        private val block: TopBlockView,
-    ) : MainViewHolder(block) {
-        fun bind(title: String) {
-            block.configure(title)
+        private val view: TopBlockView,
+    ) : WorkoutsViewHolder(view) {
+        fun bind(
+            title: String,
+            onKolsaLogoClick: (() -> Unit)
+        ) {
+            view.configure(title)
+            view.onKolsaLogoClick = onKolsaLogoClick
         }
     }
 
     class WorkoutViewHolder(
         private val view: WorkoutView,
-    ) : MainViewHolder(view) {
+    ) : WorkoutsViewHolder(view) {
         fun bind(
             workoutViewItem: WorkoutViewItem,
-            onPropertyClick: ((WorkoutView.ItemClickResult) -> Unit),
+            onWorkoutClick: ((WorkoutView.ItemClickResult) -> Unit),
         ) {
             view.configure(
                 item = workoutViewItem
             )
-            view.onPropertyClick = onPropertyClick
+            view.onWorkoutClick = onWorkoutClick
         }
     }
-
-//    class ResidentialViewHolder(
-//        val view: ResidentialRecyclerView
-//    ) : MainViewHolder(view) {
-//        fun bind(
-//            residentialItems: List<ResidentialViewItem>,
-//            onResidentialClick: ((ResidentialViewItem) -> Unit)
-//        ) {
-//            view.setResidentialList(residentialItems)
-//            view.onItemClickListener = onResidentialClick
-//        }
-//    }
 }

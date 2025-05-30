@@ -58,6 +58,7 @@ object WorkoutsContract {
 
     sealed class Intent {
         data object RefreshData : Intent()
+        data object KolsaLogoClick: Intent()
         data class ExpandWorkout(val workoutId: Int) : Intent()
         data object Collapse : Intent()
         data class FilterToggled(val type: Int?) : Intent()
@@ -69,6 +70,8 @@ object WorkoutsContract {
             val message: String,
             val actionText: String? = null,
         ) : Event()
+
+        data object OpenAboutKolsaScreen: Event()
 
         data object ReleasePlayer: Event()
 

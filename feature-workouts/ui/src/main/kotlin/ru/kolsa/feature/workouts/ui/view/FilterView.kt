@@ -3,7 +3,6 @@ package ru.kolsa.feature.workouts.ui.view
 import android.content.Context
 import android.util.AttributeSet
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup

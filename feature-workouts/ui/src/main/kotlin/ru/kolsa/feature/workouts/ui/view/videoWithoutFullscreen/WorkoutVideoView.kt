@@ -1,35 +1,25 @@
-package ru.kolsa.feature.workouts.ui.view.video
+package ru.kolsa.feature.workouts.ui.view.videoWithoutFullscreen
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.net.Uri
-import android.os.Parcelable
 import android.util.AttributeSet
-import android.view.ViewGroup
-import android.view.ViewParent
-import android.view.ViewTreeObserver
-import android.widget.FrameLayout
 import androidx.cardview.widget.CardView
-import androidx.core.view.isVisible
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleEventObserver
-import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
-import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
-import ru.kolsa.core.ui.extensions.dp
+import ru.kolsa.core.ui.databinding.VideoViewBinding
 import ru.kolsa.core.ui.extensions.hideView
 import ru.kolsa.core.ui.extensions.layoutInflater
 import ru.kolsa.core.ui.extensions.showView
-import ru.kolsa.feature.workouts.ui.databinding.VideoViewBinding
+import ru.kolsa.feature.workouts.ui.databinding.WorkoutVideoViewBinding
 import java.lang.ref.WeakReference
 
-class KolsaVideoView : CardView {
+class WorkoutVideoView : CardView {
 
     private class PlayerListener(
-        private val ref: WeakReference<KolsaVideoView>
+        private val ref: WeakReference<WorkoutVideoView>
     ) : Player.Listener {
         companion object {
             private const val CONTROLLER_SHOW_TIMEOUT_MS = 1000
@@ -76,12 +66,12 @@ class KolsaVideoView : CardView {
         }
     }
 
-    private val binding by viewBinding(VideoViewBinding::bind)
+    private val binding by viewBinding(WorkoutVideoViewBinding::bind)
 
     private var exoPlayer: ExoPlayer? = null
     private var url: String? = null
 
-    private val state = KolsaVideoViewMutableState()
+    private val state = WorkoutVideoViewMutableState()
     private val playerListener = PlayerListener(WeakReference(this))
 
     constructor(context: Context) : super(context)
@@ -93,7 +83,7 @@ class KolsaVideoView : CardView {
     )
 
     init {
-        VideoViewBinding.inflate(layoutInflater, this)
+        WorkoutVideoViewBinding.inflate(layoutInflater, this)
     }
 
     fun configure(url: String?) {

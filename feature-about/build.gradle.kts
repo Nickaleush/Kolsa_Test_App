@@ -4,24 +4,17 @@ plugins {
 }
 
 android {
-    namespace = "ru.kolsa.feature.workouts.ui"
+    namespace = "com.example.feature.about"
     compileSdk = 34
-
     defaultConfig {
         minSdk = 24
     }
-
-    buildFeatures {
-        viewBinding = true
-    }
-
     kotlinOptions {
         jvmTarget = "1.8"
     }
 }
 
 dependencies {
+    implementation(project(":core-domain"))
     implementation(project(":core-ui"))
-    implementation(project(":feature-workouts"))
-    implementation(project(":feature-about:ui"))
 }

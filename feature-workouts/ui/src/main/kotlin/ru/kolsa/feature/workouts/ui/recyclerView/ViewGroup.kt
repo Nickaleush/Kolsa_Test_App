@@ -1,8 +1,8 @@
 package ru.kolsa.feature.workouts.ui.recyclerView
 
 import android.view.ViewGroup
+import ru.kolsa.core.ui.extensions.dp
 import ru.kolsa.core.ui.extensions.layoutInflater
-import ru.kolsa.feature.workouts.ui.databinding.FilterItemBinding
 import ru.kolsa.feature.workouts.ui.databinding.TopBlockSkeletonItemBinding
 import ru.kolsa.feature.workouts.ui.databinding.WorkoutSkeletonItemBinding
 import ru.kolsa.feature.workouts.ui.view.FilterView
@@ -12,7 +12,7 @@ import ru.kolsa.feature.workouts.ui.view.WorkoutView
 
 internal fun ViewGroup.createMainViewHolder(
     type: Int
-): MainViewHolder {
+): WorkoutsViewHolder {
     return when (type) {
         MainItem.ITEM_TYPE_TOP_BLOCK -> createTopBlock()
 
@@ -30,44 +30,45 @@ internal fun ViewGroup.createMainViewHolder(
     }
 }
 
-private fun ViewGroup.createSkeletonTopBlock(): MainViewHolder {
-    return MainViewHolder.SkeletonTopBlockViewHolder(
+private fun ViewGroup.createSkeletonTopBlock(): WorkoutsViewHolder {
+    return WorkoutsViewHolder.SkeletonTopBlockViewHolder(
         TopBlockSkeletonItemBinding.inflate(layoutInflater).root
     )
 }
 
-private fun ViewGroup.createFiltersBlock(): MainViewHolder {
-    return MainViewHolder.FilterViewHolder(
+private fun ViewGroup.createFiltersBlock(): WorkoutsViewHolder {
+    return WorkoutsViewHolder.FilterViewHolder(
         FilterView(context).also {
             it.layoutParams = defaultParams()
+            it.setPadding(10.dp, 10.dp, 10.dp, 10.dp)
         }
     )
 }
 
-private fun ViewGroup.createSkeletonWorkout(): MainViewHolder {
-    return MainViewHolder.SkeletonWorkoutViewHolder(
+private fun ViewGroup.createSkeletonWorkout(): WorkoutsViewHolder {
+    return WorkoutsViewHolder.SkeletonWorkoutViewHolder(
         WorkoutSkeletonItemBinding.inflate(layoutInflater).root
     )
 }
 
-private fun ViewGroup.createSearchBlock(): MainViewHolder {
-    return MainViewHolder.SearchViewHolder(
+private fun ViewGroup.createSearchBlock(): WorkoutsViewHolder {
+    return WorkoutsViewHolder.SearchViewHolder(
         SearchView(context).also {
             it.layoutParams = defaultParams()
         }
     )
 }
 
-private fun ViewGroup.createTopBlock(): MainViewHolder {
-    return MainViewHolder.TopBlockViewHolder(
+private fun ViewGroup.createTopBlock(): WorkoutsViewHolder {
+    return WorkoutsViewHolder.TopBlockViewHolder(
         TopBlockView(context).also {
             it.layoutParams = defaultParams()
         }
     )
 }
 
-private fun ViewGroup.createWorkoutView(): MainViewHolder {
-    return MainViewHolder.WorkoutViewHolder(
+private fun ViewGroup.createWorkoutView(): WorkoutsViewHolder {
+    return WorkoutsViewHolder.WorkoutViewHolder(
         WorkoutView(context).also {
             it.layoutParams = defaultParams()
         }

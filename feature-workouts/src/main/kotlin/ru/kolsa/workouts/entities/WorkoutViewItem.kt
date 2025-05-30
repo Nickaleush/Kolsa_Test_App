@@ -1,5 +1,6 @@
 package ru.kolsa.workouts.entities
 
+import ru.kolsa.core.ui.extensions.toDurationInMin
 import ru.kolsa.domain.entity.Workout
 
 data class WorkoutViewItem(
@@ -16,6 +17,6 @@ fun WorkoutViewItem(embeddedWorkout: Workout): WorkoutViewItem {
         title = embeddedWorkout.title,
         description = embeddedWorkout.description.orEmpty(),
         type = embeddedWorkout.type,
-        duration = embeddedWorkout.duration
+        duration = embeddedWorkout.duration.toDurationInMin()
     )
 }
